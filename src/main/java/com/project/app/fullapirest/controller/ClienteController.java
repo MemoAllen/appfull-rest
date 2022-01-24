@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -41,6 +42,14 @@ public class ClienteController {
 		return iClienteService.findAll();
 
 	}
+
+	/*
+	 * @GetMapping("/clientes/page/{page}") public Page<Cliente>
+	 * consultaClientes(PathVariable Integer page) { return
+	 * iClienteService.findAll();
+	 * 
+	 * }
+	 */
 
 	
 	//ResponseEntity<?> se puso el ? para indicar qe puede ser cualquier tipo de dato (Generico)
