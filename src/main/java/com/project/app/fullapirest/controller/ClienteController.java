@@ -7,10 +7,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
-
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -43,14 +45,15 @@ public class ClienteController {
 
 	}
 
-	/*
-	 * @GetMapping("/clientes/page/{page}") public Page<Cliente>
-	 * consultaClientes(PathVariable Integer page) { return
-	 * iClienteService.findAll();
-	 * 
-	 * }
-	 */
-
+	
+	@GetMapping("/clientes/page/{page}") 
+	public Page<Cliente> consultaClientes(@PathVariable Integer page) {
+		
+		Pageable pageable = PageRequest.of(page, 4);
+		
+		return iClienteService.findAll(pageable);
+	  
+	  }
 	
 	//ResponseEntity<?> se puso el ? para indicar qe puede ser cualquier tipo de dato (Generico)
 	@GetMapping("/clientes/{id}")
